@@ -1,0 +1,22 @@
+{
+  "inputs": {
+    "src/handlers/start.ts": {
+      "bytes": 96,
+      "imports": [],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "dist/start.js": {
+      "imports": [],
+      "exports": [],
+      "entryPoint": "src/handlers/start.ts",
+      "inputs": {
+        "src/handlers/start.ts": {
+          "bytesInOutput": 204
+        }
+      },
+      "bytes": 1130
+    }
+  }
+}
