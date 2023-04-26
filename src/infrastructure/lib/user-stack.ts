@@ -6,7 +6,15 @@ export class UserStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const userPool = new cdk.aws_cognito.UserPool(this, "UserPool", {});
+    const userPool = new cdk.aws_cognito.UserPool(this, "UserPool", {
+      selfSignUpEnabled: true,
+      // sign-in can't be changed after creation
+      signInAliases: { email: true },
+      standardAttributes: {
+        email: { required: true, mutable: true },
+      },
+      mfa: cdk.aws_cognito.Mfa.OFF,
+    });
 
     new cdk.aws_cognito.UserPoolIdentityProviderGoogle(
       this,
@@ -31,16 +39,19 @@ export class UserStack extends cdk.Stack {
 
     new cdk.CfnOutput(this, "UserAuthorizerId", {
       value: authorizer.authorizerId,
+      exportName: "UserAuthorizerId",
     });
 
     const api = new cdk.aws_apigateway.RestApi(this, "UserApi", {});
 
     new cdk.CfnOutput(this, "UserApiId", {
       value: api.restApiId,
+      exportName: "UserApiId",
     });
 
     new cdk.CfnOutput(this, "UserApiRootResourceId", {
       value: api.restApiRootResourceId,
+      exportName: "UserApiRootResourceId",
     });
 
     const userTable = new cdk.aws_dynamodb.Table(this, "UserTable", {
@@ -55,12 +66,14 @@ export class UserStack extends cdk.Stack {
 
     userTable.grantReadWriteData(startFunction);
 
-    api.root.addMethod(
-      "POST",
-      new cdk.aws_apigateway.LambdaIntegration(startFunction),
-      {
-        authorizer,
-      }
-    );
+    api.root
+      .addResource("user")
+      .addMethod(
+        "POST",
+        new cdk.aws_apigateway.LambdaIntegration(startFunction),
+        {
+          authorizer,
+        }
+      );
   }
 }
