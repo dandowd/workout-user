@@ -5,6 +5,7 @@
     "user": "bin/user.js"
   },
   "scripts": {
+    "deploy": "npm run build && cdk deploy --profile CDKDeploy",
     "build": "node build.mjs",
     "watch": "tsc -w",
     "test": "jest",
