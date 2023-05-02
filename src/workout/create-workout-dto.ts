@@ -26,7 +26,7 @@ const workoutSchema = {
   minProperties: 3,
   properties: {
     exerciseId: { type: "string" },
-    repType: { type: "string", oneOf: ["FLAT", "RPE", "RANGE", "TIMED"] },
+    repType: { type: "string", enum: ["FLAT", "RPE", "RANGE", "TIMED"] },
     weight: weightScheme,
     flat: flatSchema,
     rpe: numberArray,
