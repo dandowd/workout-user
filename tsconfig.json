@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "outDir": "dist",
     "lib": ["es2020"],
     "declaration": true,
     "strict": true,
@@ -17,7 +16,9 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true,
     "strictPropertyInitialization": false,
+    "esModuleInterop": true,
     "typeRoots": ["./node_modules/@types"]
   },
   "exclude": ["node_modules", "cdk.out", "dist"]

@@ -1,22 +1,681 @@
 {
   "inputs": {
-    "src/handlers/start.ts": {
+    "node_modules/@aws-lambda-powertools/logger/lib/helpers.js": {
+      "bytes": 571,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/index.js",
+          "kind": "require-call",
+          "original": "."
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/utils/lambda/LambdaInterface.js": {
+      "bytes": 315,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/utils/lambda/index.js": {
+      "bytes": 1060,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/utils/lambda/LambdaInterface.js",
+          "kind": "require-call",
+          "original": "./LambdaInterface"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/Utility.js": {
+      "bytes": 4392,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/config/ConfigService.js": {
+      "bytes": 634,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/config/EnvironmentVariablesService.js": {
+      "bytes": 3918,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/config/index.js",
+          "kind": "require-call",
+          "original": "."
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/config/index.js": {
+      "bytes": 1127,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/config/ConfigService.js",
+          "kind": "require-call",
+          "original": "./ConfigService"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/config/EnvironmentVariablesService.js",
+          "kind": "require-call",
+          "original": "./EnvironmentVariablesService"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/contexts/hello-world.js": {
+      "bytes": 1638,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/contexts/index.js": {
+      "bytes": 1076,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/contexts/hello-world.js",
+          "kind": "require-call",
+          "original": "./hello-world"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/events/custom/index.js": {
+      "bytes": 564,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/events/index.js": {
+      "bytes": 390,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/events/custom/index.js",
+          "kind": "require-call",
+          "original": "./custom"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/types/middy.js": {
+      "bytes": 275,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/commons/lib/index.js": {
+      "bytes": 1429,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/utils/lambda/index.js",
+          "kind": "require-call",
+          "original": "./utils/lambda"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/Utility.js",
+          "kind": "require-call",
+          "original": "./Utility"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/config/index.js",
+          "kind": "require-call",
+          "original": "./config"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/contexts/index.js",
+          "kind": "require-call",
+          "original": "./samples/resources/contexts"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/events/index.js",
+          "kind": "require-call",
+          "original": "./samples/resources/events"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/types/middy.js",
+          "kind": "require-call",
+          "original": "./types/middy"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/formatter/LogFormatter.js": {
+      "bytes": 2871,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/formatter/LogFormatterInterface.js": {
+      "bytes": 323,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/formatter/PowertoolLogFormatter.js": {
+      "bytes": 2304,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/formatter/index.js",
+          "kind": "require-call",
+          "original": "."
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/formatter/index.js": {
+      "bytes": 1199,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/formatter/LogFormatter.js",
+          "kind": "require-call",
+          "original": "./LogFormatter"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/formatter/LogFormatterInterface.js",
+          "kind": "require-call",
+          "original": "./LogFormatterInterface"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/formatter/PowertoolLogFormatter.js",
+          "kind": "require-call",
+          "original": "./PowertoolLogFormatter"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/lodash.merge/index.js": {
+      "bytes": 51155,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/log/LogItem.js": {
+      "bytes": 2938,
+      "imports": [
+        {
+          "path": "node_modules/lodash.merge/index.js",
+          "kind": "require-call",
+          "original": "lodash.merge"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/log/LogItemInterface.js": {
+      "bytes": 303,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/log/index.js": {
+      "bytes": 1106,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/log/LogItem.js",
+          "kind": "require-call",
+          "original": "./LogItem"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/log/LogItemInterface.js",
+          "kind": "require-call",
+          "original": "./LogItemInterface"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/config/ConfigServiceInterface.js": {
+      "bytes": 323,
+      "imports": [],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/config/EnvironmentVariablesService.js": {
+      "bytes": 5958,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/index.js",
+          "kind": "require-call",
+          "original": "@aws-lambda-powertools/commons"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/config/index.js": {
+      "bytes": 1136,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/config/ConfigServiceInterface.js",
+          "kind": "require-call",
+          "original": "./ConfigServiceInterface"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/config/EnvironmentVariablesService.js",
+          "kind": "require-call",
+          "original": "./EnvironmentVariablesService"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/Logger.js": {
+      "bytes": 41026,
+      "imports": [
+        {
+          "path": "console",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/commons/lib/index.js",
+          "kind": "require-call",
+          "original": "@aws-lambda-powertools/commons"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/formatter/index.js",
+          "kind": "require-call",
+          "original": "./formatter"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/log/index.js",
+          "kind": "require-call",
+          "original": "./log"
+        },
+        {
+          "path": "node_modules/lodash.merge/index.js",
+          "kind": "require-call",
+          "original": "lodash.merge"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/config/index.js",
+          "kind": "require-call",
+          "original": "./config"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/middleware/middy.js": {
+      "bytes": 3601,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/Logger.js",
+          "kind": "require-call",
+          "original": "../Logger"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/middleware/index.js": {
+      "bytes": 1042,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/middleware/middy.js",
+          "kind": "require-call",
+          "original": "./middy"
+        }
+      ],
+      "format": "cjs"
+    },
+    "node_modules/@aws-lambda-powertools/logger/lib/index.js": {
+      "bytes": 1215,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/helpers.js",
+          "kind": "require-call",
+          "original": "./helpers"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/Logger.js",
+          "kind": "require-call",
+          "original": "./Logger"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/middleware/index.js",
+          "kind": "require-call",
+          "original": "./middleware"
+        },
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/formatter/index.js",
+          "kind": "require-call",
+          "original": "./formatter"
+        }
+      ],
+      "format": "cjs"
+    },
+    "src/common/logger.ts": {
+      "bytes": 124,
+      "imports": [
+        {
+          "path": "node_modules/@aws-lambda-powertools/logger/lib/index.js",
+          "kind": "import-statement",
+          "original": "@aws-lambda-powertools/logger"
+        }
+      ],
+      "format": "esm"
+    },
+    "node_modules/@middy/http-header-normalizer/index.js": {
+      "bytes": 2380,
+      "imports": [],
+      "format": "esm"
+    },
+    "node_modules/@middy/util/index.js": {
+      "bytes": 8111,
+      "imports": [],
+      "format": "esm"
+    },
+    "node_modules/@middy/http-json-body-parser/index.js": {
+      "bytes": 1219,
+      "imports": [
+        {
+          "path": "node_modules/@middy/util/index.js",
+          "kind": "import-statement",
+          "original": "@middy/util"
+        }
+      ],
+      "format": "esm"
+    },
+    "node_modules/@middy/http-error-handler/index.js": {
+      "bytes": 1569,
+      "imports": [
+        {
+          "path": "node_modules/@middy/util/index.js",
+          "kind": "import-statement",
+          "original": "@middy/util"
+        }
+      ],
+      "format": "esm"
+    },
+    "node_modules/@middy/http-event-normalizer/index.js": {
+      "bytes": 861,
+      "imports": [],
+      "format": "esm"
+    },
+    "node_modules/@middy/core/index.js": {
+      "bytes": 5749,
+      "imports": [
+        {
+          "path": "node:stream",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:stream/promises",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node:timers/promises",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/common/middleware.ts": {
+      "bytes": 943,
+      "imports": [
+        {
+          "path": "node_modules/@middy/http-header-normalizer/index.js",
+          "kind": "import-statement",
+          "original": "@middy/http-header-normalizer"
+        },
+        {
+          "path": "node_modules/@middy/http-json-body-parser/index.js",
+          "kind": "import-statement",
+          "original": "@middy/http-json-body-parser"
+        },
+        {
+          "path": "node_modules/@middy/http-error-handler/index.js",
+          "kind": "import-statement",
+          "original": "@middy/http-error-handler"
+        },
+        {
+          "path": "aws-lambda",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node_modules/@middy/http-event-normalizer/index.js",
+          "kind": "import-statement",
+          "original": "@middy/http-event-normalizer"
+        },
+        {
+          "path": "node_modules/@middy/core/index.js",
+          "kind": "import-statement",
+          "original": "@middy/core"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/infrastructure/db-client.ts": {
+      "bytes": 1224,
+      "imports": [
+        {
+          "path": "@aws-sdk/client-dynamodb",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "@aws-sdk/lib-dynamodb",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "@aws-sdk/util-dynamodb",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/workout/create-workout-handler.ts": {
+      "bytes": 1226,
+      "imports": [
+        {
+          "path": "aws-lambda",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "src/common/logger.ts",
+          "kind": "import-statement",
+          "original": "../common/logger"
+        },
+        {
+          "path": "src/common/middleware.ts",
+          "kind": "import-statement",
+          "original": "../common/middleware"
+        },
+        {
+          "path": "../entities/workout",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "src/infrastructure/db-client.ts",
+          "kind": "import-statement",
+          "original": "../infrastructure/db-client"
+        },
+        {
+          "path": "./create-workout-types",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/user-info/start-handler.ts": {
       "bytes": 96,
       "imports": [],
       "format": "esm"
     }
   },
   "outputs": {
-    "dist/start.js": {
-      "imports": [],
+    "dist/workout/create-workout-handler.js": {
+      "imports": [
+        {
+          "path": "console",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "crypto",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:stream",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:stream/promises",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "node:timers/promises",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "@aws-sdk/client-dynamodb",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "@aws-sdk/lib-dynamodb",
+          "kind": "require-call",
+          "external": true
+        },
+        {
+          "path": "@aws-sdk/util-dynamodb",
+          "kind": "require-call",
+          "external": true
+        }
+      ],
       "exports": [],
-      "entryPoint": "src/handlers/start.ts",
+      "entryPoint": "src/workout/create-workout-handler.ts",
       "inputs": {
-        "src/handlers/start.ts": {
+        "node_modules/@aws-lambda-powertools/logger/lib/helpers.js": {
+          "bytesInOutput": 371
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/utils/lambda/LambdaInterface.js": {
+          "bytesInOutput": 231
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/utils/lambda/index.js": {
+          "bytesInOutput": 1037
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/Utility.js": {
+          "bytesInOutput": 1023
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/config/ConfigService.js": {
+          "bytesInOutput": 339
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/config/EnvironmentVariablesService.js": {
+          "bytesInOutput": 2056
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/config/index.js": {
+          "bytesInOutput": 1095
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/contexts/hello-world.js": {
+          "bytesInOutput": 985
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/contexts/index.js": {
+          "bytesInOutput": 1049
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/events/custom/index.js": {
+          "bytesInOutput": 365
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/samples/resources/events/index.js": {
+          "bytesInOutput": 292
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/types/middy.js": {
           "bytesInOutput": 204
+        },
+        "node_modules/@aws-lambda-powertools/commons/lib/index.js": {
+          "bytesInOutput": 1291
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/formatter/LogFormatter.js": {
+          "bytesInOutput": 1536
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/formatter/LogFormatterInterface.js": {
+          "bytesInOutput": 239
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/formatter/PowertoolLogFormatter.js": {
+          "bytesInOutput": 1314
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/formatter/index.js": {
+          "bytesInOutput": 1153
+        },
+        "node_modules/lodash.merge/index.js": {
+          "bytesInOutput": 25919
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/log/LogItem.js": {
+          "bytesInOutput": 1398
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/log/LogItemInterface.js": {
+          "bytesInOutput": 223
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/log/index.js": {
+          "bytesInOutput": 1071
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/config/ConfigServiceInterface.js": {
+          "bytesInOutput": 238
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/config/EnvironmentVariablesService.js": {
+          "bytesInOutput": 3335
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/config/index.js": {
+          "bytesInOutput": 1105
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/Logger.js": {
+          "bytesInOutput": 23199
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/middleware/middy.js": {
+          "bytesInOutput": 1370
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/middleware/index.js": {
+          "bytesInOutput": 1029
+        },
+        "node_modules/@aws-lambda-powertools/logger/lib/index.js": {
+          "bytesInOutput": 1155
+        },
+        "src/workout/create-workout-handler.ts": {
+          "bytesInOutput": 984
+        },
+        "src/common/logger.ts": {
+          "bytesInOutput": 117
+        },
+        "node_modules/@middy/http-header-normalizer/index.js": {
+          "bytesInOutput": 2175
+        },
+        "node_modules/@middy/util/index.js": {
+          "bytesInOutput": 3102
+        },
+        "node_modules/@middy/http-json-body-parser/index.js": {
+          "bytesInOutput": 1063
+        },
+        "node_modules/@middy/http-error-handler/index.js": {
+          "bytesInOutput": 1311
+        },
+        "node_modules/@middy/core/index.js": {
+          "bytesInOutput": 5237
+        },
+        "src/common/middleware.ts": {
+          "bytesInOutput": 190
+        },
+        "src/infrastructure/db-client.ts": {
+          "bytesInOutput": 1227
         }
       },
-      "bytes": 1130
+      "bytes": 94182
+    },
+    "dist/user-info/start-handler.js": {
+      "imports": [],
+      "exports": [],
+      "entryPoint": "src/user-info/start-handler.ts",
+      "inputs": {
+        "src/user-info/start-handler.ts": {
+          "bytesInOutput": 228
+        }
+      },
+      "bytes": 1163
     }
   }
 }

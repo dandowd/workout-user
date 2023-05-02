@@ -5,13 +5,26 @@
     "user": "bin/user.js"
   },
   "scripts": {
-    "deploy": "npm run build && cdk deploy --profile CDKDeploy",
+    "deploy:all": "npm run build && cdk deploy --all --profile CDKDeploy",
+    "deploy": "npm run build && cdk deploy UserStack --profile CDKDeploy",
     "build": "node build.mjs",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@aws-lambda-powertools/logger": "^1.8.0",
+    "@aws-lambda-powertools/metrics": "^1.8.0",
+    "@aws-lambda-powertools/tracer": "^1.8.0",
+    "@aws-sdk/client-dynamodb": "^3.321.1",
+    "@aws-sdk/lib-dynamodb": "^3.321.1",
+    "@aws-sdk/util-dynamodb": "^3.321.1",
+    "@middy/core": "^4.4.0",
+    "@middy/http-error-handler": "^4.4.0",
+    "@middy/http-event-normalizer": "^4.4.0",
+    "@middy/http-header-normalizer": "^4.4.0",
+    "@middy/http-json-body-parser": "^4.4.0",
+    "@types/aws-lambda": "^8.10.114",
     "@types/jest": "^29.4.0",
     "@types/node": "18.14.6",
     "aws-cdk": "2.76.0",
