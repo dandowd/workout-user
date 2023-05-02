@@ -1,4 +1,4 @@
-import { CreateWorkout } from "../handlers/create-workout-types";
+import { CreateWorkout } from "./create-workout-dto";
 
 export type WorkoutEntity = {
   id: string;
