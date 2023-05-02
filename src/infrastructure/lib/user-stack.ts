@@ -1,7 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { SecretValue } from "aws-cdk-lib";
 import { Construct } from "constructs";
-import { createWorkoutSchema } from "../../workout/create-workout-types";
+import { createWorkoutSchema } from "../../workout/create-workout-dto";
 
 export class UserAuthStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
