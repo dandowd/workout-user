@@ -1,27 +1,29 @@
-import { APIGatewayEventRequestContext } from "aws-lambda";
+import { APIGatewayProxyResult, Context } from "aws-lambda";
 import { randomUUID } from "crypto";
 import { logger } from "../common/logger";
 import { EventWithJsonBody, withJsonBody } from "../common/middleware";
+import { getUserId } from "../common/user";
 import { UserTableItem } from "../infrastructure/db-client";
-import { CreateWorkout } from "./create-workout-types";
-import { WorkoutEntity } from "./workout";
+import { CreateWorkout } from "./create-workout-dto";
+import { WorkoutEntity } from "./workout-entity";
 
 const workoutTableFactory = (userId: string) =>
   new UserTableItem<WorkoutEntity>(userId, "workout", (workout) => workout.id);
 
 export const putWorkout = async (
   event: EventWithJsonBody<CreateWorkout>,
-  context: APIGatewayEventRequestContext
-) => {
-  const userId = context.authorizer?.userId;
-  const workoutTable = workoutTableFactory(userId!);
+  context: Context
+): Promise<APIGatewayProxyResult> => {
   const workout = event.body;
 
   logger.info("Creating workout", { workout });
 
   try {
+    const userId = getUserId(context);
+    const workoutTable = workoutTableFactory(userId);
+
     const workoutId = randomUUID();
-    await workoutTable.put({ workout, id: workoutId });
+    await workoutTable.put({ id: workoutId, ...workout });
 
     return {
       statusCode: 200,
