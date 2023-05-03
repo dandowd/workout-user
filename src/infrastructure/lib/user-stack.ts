@@ -91,9 +91,9 @@ export class UserStack extends cdk.Stack {
     });
 
     const startFunction = new cdk.aws_lambda.Function(this, "StartFunction", {
-      code: new cdk.aws_lambda.AssetCode("dist"),
+      code: new cdk.aws_lambda.AssetCode("dist/user-info"),
       runtime: cdk.aws_lambda.Runtime.NODEJS_18_X,
-      handler: "user-info/start.handler",
+      handler: "start-handler.handler",
     });
 
     userTable.grantReadWriteData(startFunction);
@@ -112,9 +112,9 @@ export class UserStack extends cdk.Stack {
       this,
       "CreateWorkoutFunction",
       {
-        code: new cdk.aws_lambda.AssetCode("dist"),
+        code: new cdk.aws_lambda.AssetCode("dist/workout"),
         runtime: cdk.aws_lambda.Runtime.NODEJS_18_X,
-        handler: "workout/create-workout-handler.handler",
+        handler: "create-workout-handler.handler",
         environment: {
           USER_TABLE_NAME: userTable.tableName,
         },
