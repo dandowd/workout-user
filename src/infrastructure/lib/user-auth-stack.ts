@@ -23,45 +23,13 @@ export class UserAuthStack extends cdk.Stack {
       },
     });
 
-    const indexFilename = "oauth-redirect.html";
-
-    const redirectBucket = new cdk.aws_s3.Bucket(this, "RedirectBucket", {
-      accessControl: cdk.aws_s3.BucketAccessControl.PRIVATE,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
-    });
-
-    new cdk.aws_s3_deployment.BucketDeployment(this, "DeployRedirectIndex", {
-      sources: [cdk.aws_s3_deployment.Source.asset("./public")],
-      destinationBucket: redirectBucket,
-    });
-
-    const originAccessIdentity = new cdk.aws_cloudfront.OriginAccessIdentity(
-      this,
-      "OriginAccess"
-    );
-    redirectBucket.grantRead(originAccessIdentity);
-
-    const redirectDist = new cdk.aws_cloudfront.Distribution(
-      this,
-      "RedirectDistribution",
-      {
-        defaultRootObject: indexFilename,
-        defaultBehavior: {
-          origin: new cdk.aws_cloudfront_origins.S3Origin(redirectBucket, {
-            originAccessIdentity,
-          }),
-        },
-      }
-    );
-
     userPool.addClient("LoginClient", {
       supportedIdentityProviders: [
         cdk.aws_cognito.UserPoolClientIdentityProvider.COGNITO,
         cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
       ],
       oAuth: {
-        callbackUrls: [`https://${redirectDist.distributionDomainName}`],
+        callbackUrls: ["expo://127.0.0.1:19000/home"],
       },
     });
 
