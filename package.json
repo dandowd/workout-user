@@ -5,6 +5,7 @@
     "user": "bin/user.js"
   },
   "scripts": {
+    "deploy:auth": "npm run build && cdk deploy UserAuthStack --profile CDKDeploy",
     "deploy:all": "npm run build && cdk deploy --all --profile CDKDeploy",
     "deploy": "npm run build && cdk deploy UserStack --profile CDKDeploy",
     "build": "tsc --noEmit && node build.mjs",

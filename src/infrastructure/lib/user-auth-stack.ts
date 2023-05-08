@@ -14,6 +14,7 @@ export class UserAuthStack extends cdk.Stack {
         email: { required: true, mutable: true },
       },
       mfa: cdk.aws_cognito.Mfa.OFF,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
     userPool.addDomain("UserPoolDomain", {
@@ -22,9 +23,12 @@ export class UserAuthStack extends cdk.Stack {
       },
     });
 
+    const indexFilename = "oauth-redirect.html";
+
     const redirectBucket = new cdk.aws_s3.Bucket(this, "RedirectBucket", {
-      websiteIndexDocument: "oauth-redirect.html",
-      publicReadAccess: true,
+      accessControl: cdk.aws_s3.BucketAccessControl.PRIVATE,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
 
     new cdk.aws_s3_deployment.BucketDeployment(this, "DeployRedirectIndex", {
@@ -32,9 +36,28 @@ export class UserAuthStack extends cdk.Stack {
       destinationBucket: redirectBucket,
     });
 
+    const originAccessIdentity = new cdk.aws_cloudfront.OriginAccessIdentity(
+      this,
+      "OriginAccess"
+    );
+    redirectBucket.grantRead(originAccessIdentity);
+
+    const redirectDist = new cdk.aws_cloudfront.Distribution(
+      this,
+      "RedirectDistribution",
+      {
+        defaultRootObject: indexFilename,
+        defaultBehavior: {
+          origin: new cdk.aws_cloudfront_origins.S3Origin(redirectBucket, {
+            originAccessIdentity,
+          }),
+        },
+      }
+    );
+
     userPool.addClient("LoginClient", {
       oAuth: {
-        callbackUrls: [redirectBucket.bucketWebsiteUrl],
+        callbackUrls: [`https://${redirectDist.distributionDomainName}`],
       },
     });
 
