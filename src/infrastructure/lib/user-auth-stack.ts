@@ -56,6 +56,10 @@ export class UserAuthStack extends cdk.Stack {
     );
 
     userPool.addClient("LoginClient", {
+      supportedIdentityProviders: [
+        cdk.aws_cognito.UserPoolClientIdentityProvider.COGNITO,
+        cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
+      ],
       oAuth: {
         callbackUrls: [`https://${redirectDist.distributionDomainName}`],
       },
@@ -66,6 +70,10 @@ export class UserAuthStack extends cdk.Stack {
       "GoogleIdProvider",
       {
         userPool,
+        attributeMapping: {
+          email: cdk.aws_cognito.ProviderAttribute.GOOGLE_EMAIL,
+        },
+        scopes: ["email"],
         clientId:
           "69790275993-vvpfap89obu9pno4soikkngr24q52gs6.apps.googleusercontent.com",
         clientSecretValue: SecretValue.secretsManager(
