@@ -29,7 +29,7 @@ export class UserAuthStack extends cdk.Stack {
         cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
       ],
       oAuth: {
-        callbackUrls: ["exp://192.168.50.101:19000/--/auth"],
+        callbackUrls: ["exp://192.168.50.101:19000/--/auth", "myapp://auth"],
       },
     });
 
@@ -55,6 +55,8 @@ export class UserAuthStack extends cdk.Stack {
       "Authorizer",
       {
         cognitoUserPools: [userPool],
+        identitySource:
+          cdk.aws_apigateway.IdentitySource.header("Authorization"),
       }
     );
 
