@@ -17,22 +17,6 @@ export class UserAuthStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
-    userPool.addDomain("UserPoolDomain", {
-      cognitoDomain: {
-        domainPrefix: "workout-user",
-      },
-    });
-
-    userPool.addClient("LoginClient", {
-      supportedIdentityProviders: [
-        cdk.aws_cognito.UserPoolClientIdentityProvider.COGNITO,
-        cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
-      ],
-      oAuth: {
-        callbackUrls: ["exp://192.168.50.101:19000/--/auth", "myapp://auth"],
-      },
-    });
-
     new cdk.aws_cognito.UserPoolIdentityProviderGoogle(
       this,
       "GoogleIdProvider",
@@ -49,6 +33,34 @@ export class UserAuthStack extends cdk.Stack {
         ),
       }
     );
+
+    new cdk.aws_cognito.UserPoolResourceServer(this, "UserPoolResourceServer", {
+      userPool,
+      identifier: "com.workout",
+      scopes: [
+        {
+          scopeName: "user",
+          scopeDescription: "User scope",
+        },
+      ],
+    });
+
+    userPool.addDomain("UserPoolDomain", {
+      cognitoDomain: {
+        domainPrefix: "workout-user",
+      },
+    });
+
+    userPool.addClient("LoginClient", {
+      supportedIdentityProviders: [
+        cdk.aws_cognito.UserPoolClientIdentityProvider.COGNITO,
+        cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
+      ],
+      oAuth: {
+        callbackUrls: ["exp://192.168.50.101:19000/--/auth", "myapp://auth"],
+        scopes: [cdk.aws_cognito.OAuthScope.custom("com.workout/user")],
+      },
+    });
 
     const authorizer = new cdk.aws_apigateway.CognitoUserPoolsAuthorizer(
       this,
