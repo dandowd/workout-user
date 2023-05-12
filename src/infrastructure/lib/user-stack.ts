@@ -40,7 +40,7 @@ export class UserStack extends cdk.Stack {
     userTable.grantReadWriteData(startFunction);
 
     api.root
-      .addResource("user")
+      .addResource("user", {})
       .addMethod(
         "POST",
         new cdk.aws_apigateway.LambdaIntegration(startFunction),
