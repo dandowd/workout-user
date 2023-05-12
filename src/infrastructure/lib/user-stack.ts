@@ -46,6 +46,7 @@ export class UserStack extends cdk.Stack {
         new cdk.aws_apigateway.LambdaIntegration(startFunction),
         {
           authorizer: userAuthorizer,
+          authorizationScopes: ["workout/user"],
         }
       );
 
