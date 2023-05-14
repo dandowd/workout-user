@@ -6,9 +6,9 @@ import { UserAuthStack } from "../lib/user-auth-stack";
 
 const app = new cdk.App();
 
-const userAuthStack = new UserAuthStack(app, "UserAuthStack", {});
+new UserAuthStack(app, "UserAuthStack", {});
 
-const userStack = new UserStack(app, "UserStack", {
+new UserStack(app, "UserStack", {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -20,5 +20,3 @@ const userStack = new UserStack(app, "UserStack", {
   // env: { account: '123456789012', region: 'us-east-1' },
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
-
-userStack.addDependency(userAuthStack);
