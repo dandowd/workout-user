@@ -77,16 +77,28 @@ export class UserAuthStack extends cdk.Stack {
       exportName: "UserAuthorizerId",
     });
 
-    const api = new cdk.aws_apigateway.RestApi(this, "PublicGateway", {});
+    const api = new cdk.aws_apigateway.RestApi(this, "PublicGateway", {
+      defaultMethodOptions: {
+        authorizer,
+        authorizationScopes: ["com.workout/user"],
+      },
+    });
+
+    const apiRoot = api.root.addResource("api");
 
     // Authorizer has to be attached to an api, this is a workaround
-    api.root.addMethod("GET", undefined, {
+    api.root.addMethod("ANY", undefined, {
       authorizer,
     });
 
     new cdk.CfnOutput(this, "PublicApiId", {
       value: api.restApiId,
       exportName: "PublicApiId",
+    });
+
+    new cdk.CfnOutput(this, "ApiResourceId", {
+      value: apiRoot.resourceId,
+      exportName: "ApiResourceId",
     });
 
     new cdk.CfnOutput(this, "PublicApiRootResourceId", {

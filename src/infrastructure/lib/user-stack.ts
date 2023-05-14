@@ -15,6 +15,16 @@ export class UserStack extends cdk.Stack {
       }
     );
 
+    const api = cdk.aws_apigateway.Resource.fromResourceAttributes(
+      this,
+      "Api",
+      {
+        restApi: publicApi,
+        resourceId: cdk.Fn.importValue("ApiResourceId"),
+        path: "/api",
+      }
+    );
+
     const userAuthorizer = {
       authorizerId: cdk.Fn.importValue("UserAuthorizerId"),
       authorizationType: cdk.aws_apigateway.AuthorizationType.COGNITO,
@@ -39,7 +49,7 @@ export class UserStack extends cdk.Stack {
 
     userTable.grantReadWriteData(startFunction);
 
-    publicApi.root
+    api
       .addResource("user")
       .addMethod(
         "POST",
@@ -65,7 +75,7 @@ export class UserStack extends cdk.Stack {
 
     userTable.grantWriteData(createWorkoutFunction);
 
-    publicApi.root
+    api
       .addResource("workout")
       .addMethod(
         "POST",
