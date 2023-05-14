@@ -1,4 +1,4 @@
-import { APIGatewayProxyResult, Context } from "aws-lambda";
+import { APIGatewayProxyResult } from "aws-lambda";
 import { randomUUID } from "crypto";
 import { logger } from "../common/logger";
 import { EventWithJsonBody, withJsonBody } from "../common/middleware";
@@ -11,15 +11,14 @@ const workoutTableFactory = (userId: string) =>
   new UserTableItem<WorkoutEntity>(userId, "workout", (workout) => workout.id);
 
 export const putWorkout = async (
-  event: EventWithJsonBody<CreateWorkout>,
-  context: Context
+  event: EventWithJsonBody<CreateWorkout>
 ): Promise<APIGatewayProxyResult> => {
   const workout = event.body;
 
   logger.info("Creating workout", { workout });
 
   try {
-    const userId = getUserId(context);
+    const userId = getUserId(event.requestContext);
     const workoutTable = workoutTableFactory(userId);
 
     const workoutId = randomUUID();
