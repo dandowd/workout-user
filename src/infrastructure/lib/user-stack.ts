@@ -6,12 +6,12 @@ export class UserStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const api = cdk.aws_apigateway.RestApi.fromRestApiAttributes(
+    const publicApi = cdk.aws_apigateway.RestApi.fromRestApiAttributes(
       this,
       "ApiReference",
       {
-        rootResourceId: cdk.Fn.importValue("UserApiRootResourceId"),
-        restApiId: cdk.Fn.importValue("UserApiId"),
+        rootResourceId: cdk.Fn.importValue("PublicApiRootResourceId"),
+        restApiId: cdk.Fn.importValue("PublicApiId"),
       }
     );
 
@@ -39,7 +39,7 @@ export class UserStack extends cdk.Stack {
 
     userTable.grantReadWriteData(startFunction);
 
-    api.root
+    publicApi.root
       .addResource("user")
       .addMethod(
         "POST",
@@ -65,7 +65,7 @@ export class UserStack extends cdk.Stack {
 
     userTable.grantWriteData(createWorkoutFunction);
 
-    api.root
+    publicApi.root
       .addResource("workout")
       .addMethod(
         "POST",
@@ -76,7 +76,7 @@ export class UserStack extends cdk.Stack {
           requestValidator: new cdk.aws_apigateway.RequestValidator(
             this,
             "CreateWorkoutRequestValidator",
-            { restApi: api, validateRequestBody: true }
+            { restApi: publicApi, validateRequestBody: true }
           ),
           requestModels: {
             "application/json": new cdk.aws_apigateway.Model(
@@ -84,7 +84,7 @@ export class UserStack extends cdk.Stack {
               "CreateWorkoutRequestModel",
               {
                 schema: createWorkoutSchema as any,
-                restApi: api,
+                restApi: publicApi,
               }
             ),
           },
