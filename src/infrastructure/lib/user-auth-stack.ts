@@ -1,5 +1,6 @@
 import * as cdk from "aws-cdk-lib";
 import { SecretValue } from "aws-cdk-lib";
+import { MockIntegration } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 export class UserAuthStack extends cdk.Stack {
@@ -87,9 +88,7 @@ export class UserAuthStack extends cdk.Stack {
     const apiRoot = api.root.addResource("api");
 
     // Authorizer has to be attached to an api, this is a workaround
-    api.root.addMethod("ANY", undefined, {
-      authorizer,
-    });
+    api.root.addMethod("ANY", new MockIntegration());
 
     new cdk.CfnOutput(this, "PublicApiId", {
       value: api.restApiId,
